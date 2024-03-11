@@ -740,54 +740,115 @@
 
 // ====================================  [Bài tập] Xây dựng component Car selection ===================================
 
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+
+// const App =()=> {
+//   const [car, setCar] = useState('Ford Mustang GT');
+//   const [color, setColor] = useState('white')
+
+
+//   const handleChangeCar=(e)=> {
+//     setCar(e.target.value)
+
+//   }
+//   const handleChangeColor=(e)=> {
+//     setColor(e.target.value)
+    
+//   }
+//   return (
+//     <div className='containr'>
+//       <h1>Select your car</h1>
+//       <div className='container-car'>
+//         <select value={car} onChange={handleChangeCar}>
+//           <option value="Ford Mustang GT" >Ford Mustang GT</option>
+//           <option value="Lamborghini Aventador" >Lamborghini Aventador</option>
+//           <option value="Porsche 911 Carrera2" >Porsche 911 Carrera</option>
+//           <option value="Chevrolet Corvette Stinggray" >Chevrolet Corvette Stinggray</option>
+//           <option value="BMW M3" >BMW M3</option>
+//           <option value="Mercedes-Benz G-Class" >Mercedes-Benz G-Class</option>
+//           <option value="Ferrari 488 GTB" >Ferrari 488 GTB</option>
+//         </select>
+
+//       </div>
+//       <div  className='container-color'>
+//         <select value={color} onChange={handleChangeColor}>
+//           <option value="White" >White</option>
+//           <option value="Black" >Black</option>
+//           <option value="Gray" >Gray</option>
+//           <option value="Verde British" >Verde British</option>
+//           <option value="Rosso Mugello" >Rosso Mugello</option>
+//           <option value="Argento Nurburgring" >Argento Nurburgring</option>
+//           <option value="Rosso Scuderia" >Rosso Scuderia</option>
+//         </select>
+
+//       </div>
+
+//       <h3>you selected  a <span style={{color: "red"}}>{color}</span> - <span style={{color: "blue"}}>{car}</span></h3>
+
+//     </div>
+
+//   )
+// }
+
+// export default App;
+
+
+// ==========================================       [Bài tập] Xây dựng Component Timer =============================
+
+// import React, { useEffect, useState } from 'react';
+
+// const App = () => {
+//   const [seconds, setSeconds] = useState(10);
+
+//   useEffect(() => {
+//     const intervalId = setInterval(() => {
+//       setSeconds(prevSeconds => prevSeconds - 1);
+//     }, 1000);
+    
+//     return () => clearInterval(intervalId);
+   
+//   }, []); 
+
+//   useEffect(() => {
+//     if (seconds === 0) {
+//       clearInterval();
+//       alert("Time's up")
+//     }
+//   }, [seconds]); 
+
+//   return (
+//     <div>
+//       <h1>Countdown Timer <span style={{color: "blue"}}>{seconds >=0 && seconds}</span></h1>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+//=================================================== SPACE -X ============================================================
+import React , {useEffect, useState} from "react";
 
 const App =()=> {
-  const [car, setCar] = useState('Ford Mustang GT');
-  const [color, setColor] = useState('white')
+  const [seconds, setSeconds] = useState(10);
 
+  useEffect(()=> {
+    const timeOut = setTimeout(()=> {
+      setSeconds(seconds => seconds -1)
+    }, 1000)
+    return ()=> clearTimeout(timeOut)
+  },[seconds])
+  useEffect(()=> {
+    if(seconds === 0) {
+      clearTimeout();
+      alert("Time is up")
+    }
 
-  const handleChangeCar=(e)=> {
-    setCar(e.target.value)
+  },[seconds])
 
-  }
-  const handleChangeColor=(e)=> {
-    setColor(e.target.value)
-    
-  }
   return (
-    <div className='containr'>
-      <h1>Select your car</h1>
-      <div className='container-car'>
-        <select value={car} onChange={handleChangeCar}>
-          <option value="Ford Mustang GT" >Ford Mustang GT</option>
-          <option value="Lamborghini Aventador" >Lamborghini Aventador</option>
-          <option value="Porsche 911 Carrera2" >Porsche 911 Carrera</option>
-          <option value="Chevrolet Corvette Stinggray" >Chevrolet Corvette Stinggray</option>
-          <option value="BMW M3" >BMW M3</option>
-          <option value="Mercedes-Benz G-Class" >Mercedes-Benz G-Class</option>
-          <option value="Ferrari 488 GTB" >Ferrari 488 GTB</option>
-        </select>
-
-      </div>
-      <div  className='container-color'>
-        <select value={color} onChange={handleChangeColor}>
-          <option value="White" >White</option>
-          <option value="Black" >Black</option>
-          <option value="Gray" >Gray</option>
-          <option value="Verde British" >Verde British</option>
-          <option value="Rosso Mugello" >Rosso Mugello</option>
-          <option value="Argento Nurburgring" >Argento Nurburgring</option>
-          <option value="Rosso Scuderia" >Rosso Scuderia</option>
-        </select>
-
-      </div>
-
-      <h3>you selected  a <span style={{color: "red"}}>{color}</span> - <span style={{color: "blue"}}>{car}</span></h3>
-
+    <div>
+      <p>Count down from {seconds >=0 &&seconds}</p>
     </div>
-
   )
 }
-
 export default App;
